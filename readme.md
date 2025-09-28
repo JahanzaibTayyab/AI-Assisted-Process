@@ -56,14 +56,15 @@ This comprehensive guide documents all processes and prerequisites for new devel
 
 1. Initial Setup & Prerequisites
 2. Cursor Rules & Configuration
-3. Process Files & Workflow
-4. PRD Generation Process
-5. UV Project Setup & Python Development
-6. Productivity Enhancement Guidelines
-7. AI-Assisted Development Workflow
-8. Best Practices & Guidelines
-9. Troubleshooting & Common Issues
-10. Project Examples
+3. VS Code + GitHub Copilot Setup & Configuration
+4. Process Files & Workflow
+5. PRD Generation Process
+6. UV Project Setup & Python Development
+7. Productivity Enhancement Guidelines
+8. AI-Assisted Development Workflow
+9. Best Practices & Guidelines
+10. Troubleshooting & Common Issues
+11. Project Examples
 
 ---
 
@@ -71,7 +72,8 @@ This comprehensive guide documents all processes and prerequisites for new devel
 
 ### **Required Tools & Software**
 
-- **Cursor Editor**: Latest version with AI capabilities
+- **Cursor Editor**: Latest version with AI capabilities (Primary)
+- **VS Code**: Alternative editor with GitHub Copilot (Secondary)
 - **Node.js**: Version 18+ for Next.js development
 - **Python**: Version 3.11+ for Python projects
 - **UV**: Python package manager and project manager
@@ -192,6 +194,51 @@ mkdir -p .cursor/rules
 - Performance optimization for agent responses
 - Security best practices for API keys and data handling
 
+### **VS Code Rules Adaptation**
+
+For VS Code + GitHub Copilot users, adapt the Cursor rules:
+
+1. **Create `.vscode/rules/` Directory**
+
+   ```bash
+   mkdir -p .vscode/rules
+   cp .cursor/rules/* .vscode/rules/
+   ```
+
+2. **Modify Rule Files for VS Code**
+
+   - Replace Cursor-specific references with VS Code equivalents
+   - Update AI prompt instructions for GitHub Copilot Chat
+   - Adapt file path references to VS Code workspace structure
+
+3. **VS Code Rule File Structure**
+
+   ```markdown
+   # Rule Title for VS Code + GitHub Copilot
+
+   ## Purpose
+
+   Brief description of what this rule covers for VS Code development
+
+   ## Guidelines
+
+   - Specific guidelines and requirements for VS Code
+   - Code examples and patterns
+   - GitHub Copilot integration best practices
+
+   ## VS Code Integration
+
+   - How to use this rule with GitHub Copilot Chat
+   - VS Code-specific configurations
+   - Extension recommendations
+
+   ## Compliance
+
+   - How to verify compliance in VS Code
+   - Automated checks with VS Code extensions
+   - Manual validation steps
+   ```
+
 ### **3. Rule File Structure**
 
 ```markdown
@@ -217,6 +264,269 @@ Brief description of what this rule covers
 - Automated checks
 - Manual validation steps
 ```
+
+---
+
+## **🔧 VS Code + GitHub Copilot Setup & Configuration**
+
+### **VS Code Installation & Setup**
+
+1. **Install VS Code**
+
+   ```bash
+   # macOS
+   brew install --cask visual-studio-code
+
+   # Or download from: https://code.visualstudio.com/
+   ```
+
+2. **Install GitHub Copilot Extension**
+
+   - Open VS Code
+   - Go to Extensions (Ctrl/Cmd + Shift + X)
+   - Search for "GitHub Copilot"
+   - Install the official GitHub Copilot extension
+   - Sign in with your GitHub account
+
+3. **Essential VS Code Extensions**
+   ```bash
+   # Install via command line
+   code --install-extension GitHub.copilot
+   code --install-extension GitHub.copilot-chat
+   code --install-extension ms-python.python
+   code --install-extension ms-python.black-formatter
+   code --install-extension ms-python.isort
+   code --install-extension ms-python.mypy-type-checker
+   code --install-extension bradlc.vscode-tailwindcss
+   code --install-extension esbenp.prettier-vscode
+   code --install-extension ms-vscode.vscode-eslint
+   ```
+
+### **VS Code Workspace Configuration**
+
+1. **Create `.vscode/settings.json`**
+
+   ```json
+   {
+     "editor.formatOnSave": true,
+     "editor.codeActionsOnSave": {
+       "source.organizeImports": true,
+       "source.fixAll.eslint": true
+     },
+     "python.defaultInterpreterPath": "./.venv/bin/python",
+     "python.formatting.provider": "black",
+     "python.linting.enabled": true,
+     "python.linting.mypyEnabled": true,
+     "typescript.preferences.importModuleSpecifier": "relative",
+     "tailwindCSS.includeLanguages": {
+       "typescript": "typescript",
+       "typescriptreact": "typescriptreact"
+     },
+     "github.copilot.enable": {
+       "*": true,
+       "yaml": false,
+       "plaintext": false,
+       "markdown": true
+     }
+   }
+   ```
+
+2. **Create `.vscode/extensions.json`**
+   ```json
+   {
+     "recommendations": [
+       "GitHub.copilot",
+       "GitHub.copilot-chat",
+       "ms-python.python",
+       "ms-python.black-formatter",
+       "ms-python.isort",
+       "ms-python.mypy-type-checker",
+       "bradlc.vscode-tailwindcss",
+       "esbenp.prettier-vscode",
+       "ms-vscode.vscode-eslint"
+     ]
+   }
+   ```
+
+### **GitHub Copilot Configuration**
+
+1. **Copilot Settings**
+
+   ```json
+   {
+     "github.copilot.enable": {
+       "*": true,
+       "yaml": false,
+       "plaintext": false,
+       "markdown": true
+     },
+     "github.copilot.editor.enableAutoCompletions": true,
+     "github.copilot.editor.enableCodeActions": true,
+     "github.copilot.chat.enableCodeActions": true
+   }
+   ```
+
+2. **Copilot Chat Integration**
+   - Use `Ctrl/Cmd + I` to open Copilot Chat
+   - Use `Ctrl/Cmd + Shift + I` for inline chat
+   - Use `Ctrl/Cmd + Enter` to accept suggestions
+
+### **VS Code Process Files Adaptation**
+
+Since VS Code doesn't have the same `.cursor/process/` structure, adapt the process files:
+
+1. **Create `.vscode/process/` Directory**
+
+   ```bash
+   mkdir -p .vscode/process
+   cp .cursor/process/* .vscode/process/
+   ```
+
+2. **Modify Process Files for VS Code**
+   - Replace `@create-prd.md` references with file paths
+   - Update instructions to use VS Code's file explorer
+   - Adapt AI prompts for GitHub Copilot Chat
+
+### **GitHub Copilot Prompt Templates**
+
+1. **Feature Implementation Prompt**
+
+   ```
+   Using GitHub Copilot Chat, help me implement [feature description].
+   Context: [relevant background information]
+   Requirements: [specific requirements from PMO/Jira]
+   Design Reference: [Figma link or description]
+
+   Please follow our process files:
+   - .vscode/process/create-prd.md for PRD creation
+   - .vscode/process/generate-tasks.md for task generation
+   - .vscode/process/process-task-list.md for implementation
+   ```
+
+2. **Code Review Prompt**
+
+   ```
+   Please review this code for:
+   - Code quality and best practices
+   - Potential bugs or edge cases
+   - Performance optimizations
+   - Security considerations
+   - Test coverage recommendations
+
+   Use our project's coding standards and follow the patterns in our codebase.
+   ```
+
+3. **Python Agent Development Prompt**
+
+   ```
+   Help me create a Python agent with OpenAI SDK that:
+   - [specific agent functionality]
+   - Uses UV for project management
+   - Implements proper error handling
+   - Includes comprehensive testing
+   - Follows async/await patterns
+
+   Follow our Python development rules in .vscode/rules/python-dev-rules.mdc
+   ```
+
+### **VS Code Workflow Optimization**
+
+1. **Keyboard Shortcuts**
+
+   ```
+   Ctrl/Cmd + I          - Open Copilot Chat
+   Ctrl/Cmd + Shift + I  - Inline Copilot Chat
+   Ctrl/Cmd + Enter      - Accept Copilot suggestion
+   Tab                   - Accept next word of suggestion
+   Esc                   - Dismiss suggestion
+   Alt + ]               - Next suggestion
+   Alt + [               - Previous suggestion
+   ```
+
+2. **File Navigation**
+
+   ```
+   Ctrl/Cmd + P          - Quick file open
+   Ctrl/Cmd + Shift + P  - Command palette
+   Ctrl/Cmd + B          - Toggle sidebar
+   Ctrl/Cmd + `          - Toggle terminal
+   ```
+
+3. **Git Integration**
+   ```
+   Ctrl/Cmd + Shift + G  - Source control panel
+   Ctrl/Cmd + K, Ctrl/Cmd + O - Open repository
+   ```
+
+### **VS Code + UV Python Development**
+
+1. **Python Environment Setup**
+
+   ```bash
+   # In VS Code terminal
+   uv init --package .
+   uv add openai pydantic httpx python-dotenv
+   uv add --dev pytest pytest-asyncio black isort mypy ruff
+   ```
+
+2. **VS Code Python Configuration**
+
+   ```json
+   {
+     "python.defaultInterpreterPath": "./.venv/bin/python",
+     "python.terminal.activateEnvironment": true,
+     "python.formatting.provider": "black",
+     "python.linting.enabled": true,
+     "python.linting.mypyEnabled": true,
+     "python.testing.pytestEnabled": true,
+     "python.testing.pytestArgs": ["tests"]
+   }
+   ```
+
+3. **Run Commands in VS Code**
+   ```bash
+   # Use Ctrl/Cmd + Shift + ` to open terminal
+   uv run python src/main.py
+   uv run pytest
+   uv run black src tests
+   uv run mypy src
+   ```
+
+### **VS Code Productivity Tips**
+
+1. **Multi-Cursor Editing**
+
+   - `Ctrl/Cmd + D` - Select next occurrence
+   - `Ctrl/Cmd + Shift + L` - Select all occurrences
+   - `Alt + Click` - Add cursor at click position
+
+2. **Code Navigation**
+
+   - `F12` - Go to definition
+   - `Alt + F12` - Peek definition
+   - `Shift + F12` - Find all references
+   - `Ctrl/Cmd + T` - Go to symbol in workspace
+
+3. **IntelliSense & Copilot**
+   - Use descriptive variable names for better suggestions
+   - Add comments to guide Copilot
+   - Use consistent code patterns
+   - Leverage Copilot Chat for complex logic
+
+### **VS Code Troubleshooting**
+
+1. **Common Issues**
+
+   - **Copilot not working**: Check GitHub authentication
+   - **Python not found**: Verify interpreter path in settings
+   - **Extensions not loading**: Restart VS Code
+   - **Terminal issues**: Check shell configuration
+
+2. **Performance Optimization**
+   - Disable unused extensions
+   - Use workspace-specific settings
+   - Clear VS Code cache if needed
+   - Update to latest version
 
 ---
 
@@ -812,12 +1122,23 @@ Process files are Cursor rules that guide AI-assisted development tasks and ensu
    ```
 
 5. **UV Project Setup Prompt**
+
    ```
    Help me set up a new UV project for [project description]:
    - Configure pyproject.toml with appropriate dependencies
    - Set up project structure for [Python/Agent/API] development
    - Include development tools (testing, linting, formatting)
    - Create basic configuration files
+   ```
+
+6. **VS Code + GitHub Copilot Feature Implementation Prompt**
+   ```
+   Using GitHub Copilot Chat in VS Code, help me implement [feature description]:
+   - Follow our .vscode/process/create-prd.md for PRD creation
+   - Use .vscode/process/generate-tasks.md for task breakdown
+   - Implement using .vscode/process/process-task-list.md workflow
+   - Ensure VS Code extensions are properly configured
+   - Use UV for Python dependency management
    ```
 
 ### **Productivity Metrics Tracking**
@@ -935,9 +1256,21 @@ Process files are Cursor rules that guide AI-assisted development tasks and ensu
    - **Prevention**: Use structured task management, maintain clear requirements documentation
 
 4. **Testing Gaps**
+
    - **Problem**: Insufficient test coverage or missing edge cases
    - **Solution**: Request comprehensive test cases, use AI to identify edge cases, implement TDD approach
    - **Prevention**: Include testing requirements in PRDs, use AI to generate test scenarios
+
+5. **VS Code + GitHub Copilot Issues**
+
+   - **Problem**: Copilot suggestions not appearing or inaccurate
+   - **Solution**: Check GitHub authentication, verify extension installation, restart VS Code
+   - **Prevention**: Keep extensions updated, maintain proper workspace configuration
+
+6. **VS Code Performance Issues**
+   - **Problem**: Slow response times or high memory usage
+   - **Solution**: Disable unused extensions, clear VS Code cache, update to latest version
+   - **Prevention**: Use workspace-specific settings, limit open files, optimize extension configuration
 
 ### **Performance Optimization**
 
