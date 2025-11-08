@@ -540,22 +540,22 @@ The **Gemini Command Line Interface (CLI)** is an open-source AI agent that brin
 
 ### **Key Features**
 
-| Feature Category                | Key Capabilities                    | Usage/Benefit                                                                                                                                                                                                                           |
-| :------------------------------ | :---------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Core AI & Context**           | **Powerful Model Access**           | Access to **Gemini 2.5 Pro** model with a massive **1 million token context window**, enabling analysis of very large codebases and complex projects.                                                                                   |
-|                                 | **Conversation Checkpointing**      | Save and resume complex, multi-step sessions without losing context.                                                                                                                                                                    |
-|                                 | **Context Files (`GEMINI.md`)**     | Define project-specific instructions, code styles, and rules in a Markdown file to tailor the agent's behavior for a repository.                                                                                                        |
-| **Built-in Tools**              | **File System Operations**          | Tools like `read-file`, `write-file`, `ls` (ReadFolder), `glob` (FindFiles), and `grep` (SearchText) allow the AI to interact with your local files and code.                                                                           |
-|                                 | **Shell Commands**                  | Run shell commands directly within the CLI using the `!` prefix (e.g., `! npm test`). Recent updates include **pseudo-terminal (PTY) support** for running interactive commands like `vim` or `git rebase -i` within the CLI's context. |
-|                                 | **Web Integration**                 | **Google Search grounding** provides real-time information to answer queries with up-to-date and reliable context. **Web Fetch** tool can retrieve and analyze content from specific URLs.                                              |
-| **Extensibility & Integration** | **Model Context Protocol (MCP)**    | Open standard support to integrate **custom tools** or external services (e.g., GitHub, image/media generation models like Imagen) by configuring MCP servers.                                                                          |
-|                                 | **IDE Integration (VS Code)**       | Connect the CLI to your IDE for a context-aware experience, including access to selected code and native diff viewing for approving code changes.                                                                                       |
-|                                 | **Custom Commands**                 | Create your own reusable commands to automate repetitive tasks.                                                                                                                                                                         |
-| **Developer Workflows**         | **Code Understanding & Generation** | Query, explain, and edit large codebases. Generate new code, functions, or entire apps from natural language prompts, even using multimodal inputs like PDFs or sketches.                                                               |
-|                                 | **Debugging & Troubleshooting**     | Explain errors, detect bugs, and troubleshoot issues using natural language instructions.                                                                                                                                               |
-|                                 | **Automation**                      | Automate operational tasks, such as generating documentation, creating changelogs, or handling complex Git operations.                                                                                                                  |
-| **Access & Security**           | **Free Tier**                       | Generous free access (e.g., 60 requests/min, 1,000 requests/day) with a personal Google account, accessing Gemini 2.5 Pro.                                                                                                              |
-|                                 | **Open Source**                     | The project is open-source (Apache 2.0 licensed), encouraging community contributions.                                                                                                                                                  |
+| Feature Category                | Key Capabilities                    | Usage/Benefit                                                                                                                                                                                                                                                  |
+| :------------------------------ | :---------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Core AI & Context**           | **Powerful Model Access**           | Access to **Gemini 2.5 Pro** model with a massive **1 million token context window**, enabling analysis of very large codebases and complex projects.                                                                                                          |
+|                                 | **Conversation Checkpointing**      | Save and resume complex, multi-step sessions without losing context.                                                                                                                                                                                           |
+|                                 | **Context Files (`GEMINI.md`)**     | Define project-specific instructions, code styles, and rules in a Markdown file to tailor the agent's behavior for a repository.                                                                                                                               |
+| **Built-in Tools**              | **File System Operations**          | Tools like `read-file`, `write-file`, `ls` (ReadFolder), `glob` (FindFiles), and `grep` (SearchText) allow the AI to interact with your local files and code.                                                                                                  |
+|                                 | **Shell Commands**                  | Run shell commands directly within the CLI using the `!` prefix (e.g., `! npm test`). Recent updates include **pseudo-terminal (PTY) support** for running interactive commands like `vim` or `git rebase -i` within the CLI's context.                        |
+|                                 | **Web Integration**                 | **Google Search grounding** provides real-time information to answer queries with up-to-date and reliable context. **Web Fetch** tool can retrieve and analyze content from specific URLs.                                                                     |
+| **Extensibility & Integration** | **Model Context Protocol (MCP)**    | Open standard support to integrate **custom tools** or external services (e.g., GitHub, image/media generation models like Imagen) by configuring MCP servers.                                                                                                 |
+|                                 | **IDE Integration (VS Code)**       | Connect the CLI to your IDE for a context-aware experience, including access to selected code and native diff viewing for approving code changes.                                                                                                              |
+|                                 | **Custom Commands**                 | Create your own reusable commands to automate repetitive tasks.                                                                                                                                                                                                |
+| **Developer Workflows**         | **Code Understanding & Generation** | Query, explain, and edit large codebases. Generate new code, functions, or entire apps from natural language prompts, even using **multimodal inputs** like PDFs, images, or sketches. Supports vision capabilities for analyzing diagrams and visual content. |
+|                                 | **Debugging & Troubleshooting**     | Explain errors, detect bugs, and troubleshoot issues using natural language instructions.                                                                                                                                                                      |
+|                                 | **Automation**                      | Automate operational tasks, such as generating documentation, creating changelogs, or handling complex Git operations.                                                                                                                                         |
+| **Access & Security**           | **Free Tier**                       | Generous free access with a personal Google account: **60 requests per minute**, **1,000 requests per day**, accessing Gemini 2.5 Pro. For higher limits, use API key authentication.                                                                          |
+|                                 | **Open Source**                     | The project is open-source (Apache 2.0 licensed), encouraging community contributions.                                                                                                                                                                         |
 
 ### **Installation & Setup**
 
@@ -584,9 +584,15 @@ The **Gemini Command Line Interface (CLI)** is an open-source AI agent that brin
      - **API Key**: Use a custom API key (set as environment variable `GEMINI_API_KEY`) for higher usage limits or specific models
 
 3. **Verify Installation**
+
    ```bash
    gemini --version
    ```
+
+4. **System Requirements**
+   - **Node.js**: Version 18 or later (required)
+   - **Operating System**: macOS, Linux, or Windows
+   - **Internet Connection**: Required for API access and authentication
 
 ### **Project Configuration**
 
@@ -643,13 +649,20 @@ The **Gemini Command Line Interface (CLI)** is an open-source AI agent that brin
 
 1. **Interactive REPL Mode**
 
-   The CLI operates in an interactive **REPL (Read-Eval-Print Loop)** mode:
+   The CLI operates in an interactive **REPL (Read-Eval-Print Loop)** mode, allowing you to have continuous conversations with the AI:
 
    ```bash
    > Write a Python script to fetch the latest news from an RSS feed.
    > @src/index.js Add error handling to this file.
    > ! npm test
    ```
+
+   **REPL Features**:
+
+   - Maintains conversation context across multiple prompts
+   - Supports multi-line input (press Enter to continue, Ctrl+D to submit)
+   - History navigation with arrow keys
+   - Tab completion for commands and file paths
 
 2. **File References**
 
@@ -670,6 +683,13 @@ The **Gemini Command Line Interface (CLI)** is an open-source AI agent that brin
    > ! git status
    > ! npm run build
    ```
+
+   **Advanced Shell Features**:
+
+   - **Pseudo-terminal (PTY) Support**: Run interactive commands like `vim`, `git rebase -i`, or `nano` directly within the CLI
+   - **Command Chaining**: Combine multiple commands with `&&` or `||`
+   - **Output Capture**: Command outputs are captured and can be referenced in subsequent prompts
+   - **Working Directory**: Commands run in the current project directory
 
 4. **Important Commands and Shortcuts**
 
